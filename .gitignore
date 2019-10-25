@@ -1,0 +1,10 @@
+/statics
+/assets
+/.idea
+/cmd/testzipchecker/testzipchecker
+/vendor
+/.cloud-sdk-setup
+/coverage.out
+/function.go
+*~
+/go.sum
