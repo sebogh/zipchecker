@@ -1,7 +1,7 @@
 /statics
 /assets
 /.idea
-/cmd/testzipchecker/testzipchecker
+/cmd/server/server
 /vendor
 /.cloud-sdk-setup
 /coverage.out

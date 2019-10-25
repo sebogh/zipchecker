@@ -15,11 +15,17 @@ CWD := $(shell pwd)
 # Collect .go files.
 GO_FILES := $(wildcard cmd/zipchecker/*.go internal/*.go function.go)
 
+# The go module we dealing with
+MODULE := git.thinkproject.com/zipchecker
+
+# The local test server
+SERVER := cmd/server/server
+
 # Google Cloud parameter.
 GCF_PROJECT := skilled-curve-238017
 GCF_REGION := europe-west2
 
-all: cmd/testzipchecker/testzipchecker
+all: $(SERVER)
 
 vendor-sync:
 	go mod vendor
@@ -35,18 +41,20 @@ statics/statik.go: assets/zipcodes.de.csv
 
 # Test internal package.
 test: statics/statik.go
-	go test -v git.thinkproject.com/zipchecker/internal -cover
+	go test -v $(MODULE)/internal -cover
 
 test-coverage: statics/statik.go
-	go test -coverprofile=coverage.out -v git.thinkproject.com/zipchecker/internal && go tool cover -func=coverage.out && go tool cover -html=coverage.out
+	go test -coverprofile=coverage.out -v $(MODULE)/internal && \
+	go tool cover -func=coverage.out && \
+	go tool cover -html=coverage.out
 
 # Build test server.
-cmd/testzipchecker/testzipchecker: statics/statik.go $(GO_FILES) vendor-sync
-	go build -mod vendor -o cmd/testzipchecker/testzipchecker git.thinkproject.com/zipchecker/cmd/testzipchecker
+$(SERVER): statics/statik.go $(GO_FILES) vendor-sync
+	go build -mod vendor -o $@ $(MODULE)/cmd/server
 
 # Run test server.
-run_local: cmd/testzipchecker/testzipchecker
-	cmd/testzipchecker/testzipchecker
+run_local: $(SERVER)
+	$<
 
 # Test against test server.
 test_local:
@@ -63,7 +71,6 @@ test_local:
 		google/cloud-sdk gcloud config set project $(GCF_PROJECT)
 	touch .cloud-sdk-setup
 
-
 # Deploy Google Cloud Function.
 deploy: .cloud-sdk-setup statics/statik.go $(GO_FILES)
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
@@ -71,7 +78,6 @@ deploy: .cloud-sdk-setup statics/statik.go $(GO_FILES)
 		--runtime go111 --entry-point Query --source="/code" --memory=128mb
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
         google/cloud-sdk /bin/sh -c "cd /code && chown -Rc --reference=Makefile ."
-
 
 # Test against Google Cloud Function.
 test_prod:
@@ -82,13 +88,11 @@ test_prod:
 		-H "accept: application/json" -H "Content-Type: application/json" \
     	-d '{"zipCode":"12205", "placeName":"Barlin"}' | jq
 
-
-
 # Remove object files (if any).
 clean:
 	rm -f [*~
 	rm -rf statics
-	rm -f cmd/testzipchecker/testzipchecker
+	rm -f $(SERVER)
 
 # Remove all intermediate files.
 tidy: clean
