@@ -39,7 +39,7 @@ func Query(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, errDecode.Error(), 400)
 			return
 		}
-		log.Printf("query for zip '%s' place '%s'", queryData.ZipCode, queryData.PlaceName)
+		log.Printf("POST request, query for zip '%s' place '%s'", queryData.ZipCode, queryData.PlaceName)
 
 		// compare query data with known places
 		match := places.Check(queryData.ZipCode, queryData.PlaceName)
@@ -54,6 +54,8 @@ func Query(w http.ResponseWriter, r *http.Request) {
 		w.Write(js)
 
 	default:
+
+		log.Printf("%s request", r.Method)
 
 		// return the git hash
 		fmt.Fprint(w, os.Getenv("BUILD_GITHASH"))
