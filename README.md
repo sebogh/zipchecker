@@ -1,4 +1,4 @@
-# zipchecker
+# Zipchecker
 
 A service to match and correct zipcodes and placenames. 
 
