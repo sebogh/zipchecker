@@ -33,6 +33,7 @@ assets/zipcodes.de.csv:
 
 # Convert the content of the assets folder to a go module providing a http.FileSystem.
 statics/statik.go: assets/zipcodes.de.csv
+	go get github.com/rakyll/statik
 	statik -f -src assets -p statics
 
 # Test internal package.
@@ -59,7 +60,7 @@ test_local:
 		-H "accept: application/json" -H "Content-Type: application/json" \
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 	curl -X POST -s "http://localhost:8080" \
-    	-H "accept: application/json" -H "Content-Type: application/json" \
+	-H "accept: application/json" -H "Content-Type: application/json" \
         -d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
 
 # Set up the Google Cloud SDK (in a docker container).
@@ -87,10 +88,10 @@ test_gcloud:
 	echo -e "githash:" `curl -X GET -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker"` "\n"
 	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
-    	-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
+		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
-    	-d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
+		-d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
 
 # Remove object files (if any).
 clean:
