@@ -4,29 +4,31 @@ A service to match and correct zipcodes and placenames.
 
 # Get Started Locally
 
-clone repo, build and start a local server in one shell:
+clone repo:
 
-    cd /tmp
     git clone git@github.com:sebogh/zipchecker.git
-    make -C /tmp/zipchecker run_local
+    
+build and start a local server in one shell:
+    
+    make run_local
 
 and in a second shell query the server by running:
 
-    make -C /tmp/zipchecker test_local
+    make test_local
 
 # Google Cloud Function
 
 prepare (Google) Cloud SDK in a Docker container: 
     
-    make -C /tmp/zipchecker setup_gcloud
+    make setup_gcloud
 
 deploy to Google Cloud: 
 
-    make -C /tmp/zipchecker deploy_gcloud
+    make deploy_gcloud
     
 test against Google Cloud:
 
-    make -C /tmp/zipchecker test_gcloud
+    make test_gcloud
 
 
 see: <https://console.cloud.google.com/functions/details/europe-west2/zipchecker?project=skilled-curve-238017>
