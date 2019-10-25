@@ -25,6 +25,9 @@ SERVER := cmd/server/server
 GCF_PROJECT := skilled-curve-238017
 GCF_REGION := europe-west2
 
+# Git hash (to be included in the test server)
+BUILD_GITHASH := $(shell git rev-parse HEAD)
+
 all: $(SERVER)
 
 vendor-sync:
@@ -50,7 +53,7 @@ test-coverage: statics/statik.go
 
 # Build test server.
 $(SERVER): statics/statik.go $(GO_FILES) vendor-sync
-	go build -mod vendor -o $@ $(MODULE)/cmd/server
+	go build -mod vendor -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/server
 
 # Run test server.
 run_local: $(SERVER)
@@ -58,7 +61,8 @@ run_local: $(SERVER)
 
 # Test against test server.
 test_local:
-	curl -X POST "http://localhost:8080" \
+	echo -e "githash:" `curl -X GET -s "http://localhost:8080"` "\n"
+	curl -X POST -s "http://localhost:8080" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 
