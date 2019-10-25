@@ -18,6 +18,8 @@ node_modules
 
 Makefile
 .cloud-sdk-setup
+README.md
+internal/places_test.go
 cmd
 !statics
 !statics/statik.go

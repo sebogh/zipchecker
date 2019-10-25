@@ -63,6 +63,8 @@ test_local:
         -d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
 
 # Set up the Google Cloud SDK (in a docker container).
+setup_gcloud: .cloud-sdk-setup
+
 .cloud-sdk-setup:
 	docker system prune
 	docker pull "google/cloud-sdk:latest"
@@ -72,15 +74,16 @@ test_local:
 	touch .cloud-sdk-setup
 
 # Deploy Google Cloud Function.
-deploy: .cloud-sdk-setup statics/statik.go $(GO_FILES)
+deploy_gcloud: .cloud-sdk-setup statics/statik.go $(GO_FILES)
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
 		google/cloud-sdk gcloud functions deploy zipchecker --trigger-http --region=$(GCF_REGION) \
-		--runtime go111 --entry-point Query --source="/code" --memory=128mb
+		--runtime go111 --entry-point Query --source="/code" --memory=128mb \
+		--set-env-vars BUILD_GITHASH=$(BUILD_GITHASH)
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
         google/cloud-sdk /bin/sh -c "cd /code && chown -Rc --reference=Makefile ."
 
 # Test against Google Cloud Function.
-test_prod:
+test_gcloud:
 	echo -e "githash:" `curl -X GET -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker"` "\n"
 	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
@@ -103,4 +106,4 @@ tidy: clean
 	rm -f go.sum
 	rm -rf vendor
 
-.PHONY: clean tidy test test-coverage test_local run_local deploy test_prod vendor-sync
+.PHONY: clean tidy test test-coverage test_local run_local setup_gcloud deploy_gcloud test_gcloud vendor-sync
