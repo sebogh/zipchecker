@@ -4,6 +4,8 @@ A service to match and correct zipcodes and placenames.
 
 # Get Started Locally
 
+Make sure you got go version >= 1.11.
+
 clone repo:
 
     git clone git@github.com:sebogh/zipchecker.git
