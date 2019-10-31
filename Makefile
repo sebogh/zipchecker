@@ -18,13 +18,6 @@ GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go)
 # The go module we dealing with
 MODULE := git.thinkproject.com/zipchecker
 
-# Google Cloud parameter.
-GCF_PROJECT := skilled-curve-238017
-GCF_REGION := europe-west2
-
-# Git hash (to be included in the test server)
-BUILD_GITHASH := $(shell git rev-parse HEAD)
-
 all: cmd/server/server
 
 assets/zipcodes.de.csv:
@@ -47,7 +40,7 @@ test-coverage: statics/statik.go
 
 # Build test server.
 cmd/server/server: statics/statik.go $(GO_FILES)
-	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/server
+	go build -o $@ $(MODULE)/cmd/server
 
 # Run test server.
 run_local: cmd/server/server
@@ -55,47 +48,16 @@ run_local: cmd/server/server
 
 # Test against test server.
 test_local:
-	echo -e "githash:" `curl -X GET -s "http://localhost:8080"` "\n"
 	curl -X POST -s "http://localhost:8080" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 	curl -X POST -s "http://localhost:8080" \
-	-H "accept: application/json" -H "Content-Type: application/json" \
+		-H "accept: application/json" -H "Content-Type: application/json" \
         -d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
-
-# Set up the Google Cloud SDK (in a docker container).
-setup_gcloud: .cloud-sdk-setup
-
-.cloud-sdk-setup:
-	docker system prune
-	docker pull "google/cloud-sdk:latest"
-	docker run -ti --name gcloud-config --dns=8.8.8.8 --dns-search=. google/cloud-sdk gcloud auth login
-	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
-		google/cloud-sdk gcloud config set project $(GCF_PROJECT)
-	touch .cloud-sdk-setup
-
-# Deploy Google Cloud Function.
-deploy_gcloud: .cloud-sdk-setup statics/statik.go $(GO_FILES)
-	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
-		google/cloud-sdk gcloud functions deploy zipchecker --trigger-http --region=$(GCF_REGION) \
-		--runtime go111 --entry-point Query --source="/code" --memory=128mb \
-		--set-env-vars BUILD_GITHASH=$(BUILD_GITHASH)
-	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
-        google/cloud-sdk /bin/sh -c "cd /code && chown -Rc --reference=Makefile ."
-
-# Test against Google Cloud Function.
-test_gcloud:
-	echo -e "githash:" `curl -X GET -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker"` "\n"
-	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
-		-H "accept: application/json" -H "Content-Type: application/json" \
-		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
-	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
-		-H "accept: application/json" -H "Content-Type: application/json" \
-		-d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
 
 # Remove object files (if any).
 clean:
-	rm -f [*~
+	rm -f *~
 	rm -rf statics
 	rm -f cmd/server/server
 	rm -f coverage.out
@@ -103,8 +65,6 @@ clean:
 # Remove all intermediate files.
 tidy: clean
 	rm -rf assets
-	rm -f .cloud-sdk-setup
 	rm -f go.sum
-	rm -rf vendor
 
 .PHONY: clean tidy test test-coverage test_local run_local setup_gcloud deploy_gcloud test_gcloud vendor-sync
