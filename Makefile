@@ -94,7 +94,7 @@ test_gcloud:
 
 # Remove object files (if any).
 clean:
-	rm -f [*~
+	rm -f *~
 	rm -rf statics
 	rm -f cmd/server/server
 	rm -f coverage.out
