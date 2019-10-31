@@ -105,4 +105,4 @@ tidy: clean
 	rm -f .cloud-sdk-setup
 	rm -f go.sum
 
-.PHONY: clean tidy test test-coverage test_local run_local setup_gcloud deploy_gcloud test_gcloud vendor-sync
+.PHONY: clean tidy test test-coverage test_local run_local setup_gcloud deploy_gcloud test_gcloud
