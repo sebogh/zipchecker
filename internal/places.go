@@ -30,6 +30,7 @@ type Match struct {
 
 type Places []*Place
 
+// constructor
 func NewPlaces() *Places {
 
 	// get the static FS
@@ -59,10 +60,12 @@ func NewPlaces() *Places {
 	return &places
 }
 
+// formatter
 func (place Place) Format() string {
 	return fmt.Sprintf("%v", place)
 }
 
+// business logic
 func (places *Places) Check(zipCode string, placeName string) *Match {
 	var bestMatch *Match
 	for _, p := range *places {

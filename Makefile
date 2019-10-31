@@ -85,7 +85,6 @@ deploy_gcloud: .cloud-sdk-setup statics/statik.go $(GO_FILES)
 
 # Test against Google Cloud Function.
 test_gcloud:
-	echo -e "githash:" `curl -X GET -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker"` "\n"
 	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
