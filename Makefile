@@ -104,6 +104,5 @@ tidy: clean
 	rm -rf assets
 	rm -f .cloud-sdk-setup
 	rm -f go.sum
-	rm -rf vendor
 
 .PHONY: clean tidy test test-coverage test_local run_local setup_gcloud deploy_gcloud test_gcloud vendor-sync
