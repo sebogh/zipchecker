@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pandoctc" />
+        <meta name="author" content="Dr. Sebastian Bogan" />
+            <title>talk notes</title>
+            <style type="text/css">@charset "UTF-8";
+body {
+font-family: -apple-technique, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', sans-serif;
+font-size: 16px;
+color: #3f4448;
+line-height: 1.5;
+margin: 0;
+background-color: #f9f9f9; }
+#tc-content {
+width: 720px;
+margin: 0 calc(50vw - 400px);
+padding: 10px 40px; }
+ul, ol, dl {
+text-align: left; }
+h1, h2, h3, h4, h5, h6 {
+font-size: 100%;
+font-weight: 600;
+text-align: left;
+page-break-after: avoid;
+clear: both;
+margin: 1.1em 0 .5em;
+padding: 0; }
+h1 {
+font-weight: 400;
+margin: 1em 0 .5em;
+font-size: 200%;
+color: #26596a; }
+h2 {
+font-weight: 400;
+margin: 1.2em 0 .5em;
+font-size: 140%; }
+h3 {
+font-weight: 400;
+margin: 1.2em 0 .5em;
+font-size: 120%; }
+h4 > .header-section-number,
+h5 > .header-section-number,
+h6 > .header-section-number {
+display: none;
+font-size: 100%; }
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+margin-top: 0; }
+.title {
+font-size: 250%; }
+a {
+text-decoration: none;
+color: #00F; }
+p {
+margin-top: 0;
+margin-bottom: .7em;
+padding: 0; }
+blockquote {
+padding: 1em 2em;
+margin-left: 0;
+margin-right: 0; }
+blockquote p:last-child {
+margin-bottom: 0; }
+ul {
+list-style-type: disc;
+margin-bottom: 1em; }
+figure img {
+display: block;
+margin: auto; }
+figure figcaption {
+margin-top: 20px;
+font-size: smaller;
+text-align: center;
+white-space: nowrap; }
+figure {
+margin-top: 30px;
+margin-bottom: 30px;
+margin-left: 0;
+margin-right: 0; }
+#tc-title, #tc-subtitle {
+color: #26596a;
+line-height: 1.2;
+font-weight: 400;
+text-align: left;
+margin: 0;
+padding: 0; }
+#tc-title {
+font-size: 2em;
+padding-bottom: .4em; }
+#tc-subtitle {
+padding-bottom: 1.2em; }
+#tc-frontmatters table {
+border: none;
+text-align: left;
+margin: inherit;
+padding: 0;
+margin-bottom: 30px;
+margin-top: 10px; }
+#tc-frontmatters table tr td {
+padding: 3px 1em 5px 0;
+vertical-align: top; }
+.toc-section-number {
+padding-right: .8em; }
+table {
+border-top: 1pt solid #26596a;
+border-bottom: 1pt solid #26596a;
+max-width: 100%;
+border-spacing: 0;
+border-collapse: collapse;
+margin: 30px auto; }
+table {
+font-size: smaller; }
+table caption {
+caption-side: top;
+margin-bottom: 17px;
+text-align: center; }
+table tr.odd {
+background: #f3fbff; }
+table tr td {
+padding: 5px 10px; }
+table tr th {
+padding: 10px; }
+table code {
+background-color: transparent;
+font-size: 13px;
+border: none;
+padding: none; }
+.todo {
+color: #FFF;
+background: red;
+padding: 6px; }
+.todo code {
+color: #FFF;
+background-color: red; }
+html[lang=de] q {
+quotes: „ “ » «; }
+html[lang=en] q {
+quotes: “ ” » «; }
+table, ul {
+text-align: left; }
+img {
+max-width: 100%;
+height: auto; }
+.header-section-number {
+margin-right: 1em; }
+pre, code {
+font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,monospace;
+background-color: #E8E8E8; }
+code {
+margin: 2px;
+padding: 3px;
+padding-top: 5px;
+font-size: 85%; }
+pre {
+line-height: 1.5;
+overflow: auto;
+padding: 6px 10px; }
+pre code {
+background-color: transparent;
+border: none;
+line-height: 1.6;
+margin: 0;
+padding: 0;
+font-size: 90%; }
+p.pagebreak {
+height: 10cm; }
+div.admonition {
+margin: 1em 0;
+border: none;
+padding: 0; }
+div.admonition .admonition-title > p:before {
+display: inline-block;
+width: 1.2em;
+height: 1.2em;
+margin-bottom: .2em;
+-webkit-font-smoothing: antialiased;
+margin-right: .75em;
+content: "";
+vertical-align: middle; }
+div.admonition .admonition-title {
+font-weight: 700;
+color: #fff;
+display: block;
+padding: 1px 12px;
+-webkit-margin-after: 0;
+margin-bottom: 0; }
+div.admonition .admonition-title > p {
+-webkit-margin-before: 0;
+-webkit-margin-after: .0;
+margin-top: 0;
+margin-bottom: 0;
+font-size: small; }
+div.admonition .admonition-body {
+margin: 0;
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+-webkit-margin-before: 0;
+-webkit-margin-after: 0;
+padding: 6px 12px; }
+div.admonition .admonition-body > p:last-child {
+margin-bottom: 0; }
+div.info pre, div.info code, div.info tt, div.information pre, div.information code, div.information tt, div.tip pre, div.tip code, div.tip tt, div.tipp pre, div.tipp code, div.tipp tt {
+background-color: #d7e1e8; }
+div.info .admonition-title > p:before, div.information .admonition-title > p:before, div.tip .admonition-title > p:before, div.tipp .admonition-title > p:before {
+background: url("data:image/svg+xml,%3Csvg%20fill%3D%22%23FFF%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M0%200h24v24H0V0z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3CclipPath%20id%3D%22b%22%3E%3Cuse%20overflow%3D%22visible%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2FclipPath%3E%3Cpath%20clip-path%3D%22url(%23b)%22%20d%3D%22M9%2021c0%20.55.45%201%201%201h4c.55%200%201-.45%201-1v-1H9v1zm3-19C8.14%202%205%205.14%205%209c0%202.38%201.19%204.47%203%205.74V17c0%20.55.45%201%201%201h6c.55%200%201-.45%201-1v-2.26c1.81-1.27%203-3.36%203-5.74%200-3.86-3.14-7-7-7zm2.85%2011.1l-.85.6V16h-4v-2.3l-.85-.6C7.8%2012.16%207%2010.63%207%209c0-2.76%202.24-5%205-5s5%202.24%205%205c0%201.63-.8%203.16-2.15%204.1z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+background-size: 100%; }
+div.info .admonition-title, div.information .admonition-title, div.tip .admonition-title, div.tipp .admonition-title {
+background: #6ab0de; }
+div.info .admonition-body, div.information .admonition-body, div.tip .admonition-body, div.tipp .admonition-body {
+background: #e7f2fa; }
+div.note pre, div.note code, div.note tt, div.hinweis pre, div.hinweis code, div.hinweis tt {
+background-color: #eddcbe; }
+div.note .admonition-title > p:before, div.hinweis .admonition-title > p:before {
+background: url("data:image/svg+xml,%3Csvg%20fill%3D%22%23FFF%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M1%2021h22L12%202%201%2021zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+background-size: 100%; }
+div.note .admonition-title, div.hinweis .admonition-title {
+background: #f0b37e; }
+div.note .admonition-body, div.hinweis .admonition-body {
+background: #ffedcc; }
+div.attention pre, div.attention code, div.attention tt, div.achtung pre, div.achtung code, div.achtung tt, div.vorsicht pre, div.vorsicht code, div.vorsicht tt {
+background-color: #ebe2e1; }
+div.attention .admonition-title > p:before, div.achtung .admonition-title > p:before, div.vorsicht .admonition-title > p:before {
+background: url("data:image/svg+xml,%3Csvg%20fill%3D%22%23FFF%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M7%202v11h3v9l7-12h-4l4-8z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+background-size: 100%; }
+div.attention .admonition-title, div.achtung .admonition-title, div.vorsicht .admonition-title {
+background: #f29f97; }
+div.attention .admonition-body, div.achtung .admonition-body, div.vorsicht .admonition-body {
+background: #fdf3f2; }
+#tc-toc a {
+-moz-transition: color .2s ease-in;
+-o-transition: color .2s ease-in;
+-webkit-transition: color .2s ease-in;
+transition: .2s ease-in;
+color: #3f4448; }
+#tc-toc a:hover {
+color: #26596a; }
+#tc-toc #tc-toc-title {
+color: #26596a; }
+#tc-toc #tc-toc-body ul {
+list-style-type: none; }
+dt {
+font-style: italic;
+margin-bottom: .75em; }
+dl dt:not(:first-child) {
+margin-top: 2em; }
+@media print {
+body {
+font-size: 16px;
+max-width: 100%; } }
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+pre, code, tt {
+overflow: auto;
+word-break: break-all; }
+#tc-content {
+margin: 0 0; } }
+
+@media screen and (min-width: 1024px) {
+#tc-content {
+border: 1pt solid #D3D3D3; } }
+
+@media screen and (min-width: 1600px) {
+#tc-toc {
+position: fixed;
+display: block;
+top: 0;
+right: calc(50vw + 446px);
+bottom: 100vh;
+width: calc(50vw - 446px);
+padding-bottom: 10px;
+padding-top: 10px;
+overflow-y: scroll;
+height: 100%;
+direction: rtl;
+color: darkgrey; }
+#tc-toc a {
+color: darkgrey; }
+#tc-toc #tc-toc-title {
+padding-left: 20px;
+padding-right: 20px;
+direction: ltr;
+color: darkgrey;
+font-weight: 400;
+font-size: 140%; }
+#tc-toc #tc-toc-body {
+direction: ltr;
+font-size: 90%;
+padding-right: 20px; }
+#tc-toc #tc-toc-body ul {
+padding-left: 1em;
+list-style-type: none; }
+#tc-toc #tc-toc-body > ul {
+padding-left: 20px; }
+#tc-toc #tc-toc-body li {
+margin-top: .5em;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis; } }
+h1 {
+border-bottom: 1px solid #eaecef;
+margin: 2em 0 1em; }
+h2 {
+border-bottom: 1px solid #eaecef;
+margin: 1.5em 0 1em; }
+.header-section-number {
+margin-right: .5em; }
+
+</style>
+        <link href="data:image/x-icon;base64,AAABAAMAMDAAAAEAIAAvAgAANgAAACAgAAABACAA4gEAAGUCAAAQEAAAAQAgACsBAABHBAAAiVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB9klEQVRoge2Yr1MCQRiGH3+MRQIzmEwkiuIYpGjhT7hgoThkEkH/Cgmmi84V54qBbqGYIBCwXKILMxQbwcBSHHG/b/fOEWefyrf7vu/tcnv7QSAQCAQ82MlrolqrcwhEQBM4B6pA2fy8AKbAGBgA/SyNP/LQ9Q5Qa3VOgC7QBvaFw5ZAAjxkafzmo+8VoNbq3AO3PnMAvSyN71wHOwUwTz0BLlyFvzAC2i6roQ5Qa3WugD5wpB1rYQZEWRq/agapApgnPyB/82tmQFOzErtKgYTizGPmTjQD9qSF5g97rTTkwnGl3ijNJ8MXSbFoC5mtM/GypedUspWkW6jracYFkaZ1BcwJu0B+SOXFEijbTmzJCkT8vnmMZmQrkgRoeltxx6otCXDu78MZq7YkQNXfhzNWbUmAsr2kMKza2pP4zyEJsCjchYe2JMDU34czVm1JgLG/D2es2pIAA38fzli1JQH6rI7132ZptH/EGsB8iyQ5GNKSSDoX0tfog6cZF0SaogvNfDJ8r9QbJeDSy5KcXpbGT5JC7Z14SH6diE2MsjRuSIu1J3Gb1cW7KGZGQ4wqgLniRRQTYt1WUfWG1N9Cpm/TZNWMyosRq3aKqicE/6C1KG6rfMd8Mnyp1BvPwAFwhnxFl8AjcCN922xi69vrgUAgEAhsNZ+WLoUnmDzadwAAAABJRU5ErkJggolQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAalJREFUWIXtljFLAzEYhp+KiLjoUCk4iUME7WKh/QcOgv0BwcXFJbOLOIv/IItrJYODa+kfKIjoIA7NIE6ClELdpIg6mEJtk7vreTfZdwrJd+/7cN9x+WCm/65CmoeEVGvACrDott6BvjX6JRcAIVXBGv0lpDoAToCSA5h3JR9AH3gFzq3Rl8Nn4rznYoKHy5KQ6gZoANtAcSQcty66s4arLY15TAcgpMIajZBqF+gA1Uin36oCHSHVrvMIFka2QEi1A9xNEexTxRp9PxWAI1524Rt/BHgCKsCbNXricKIFw1cPHGYQjvM4DLUi2AIh1WfU+ZT6skZ7vzfvppBqP8NwgILzTAYA7GUYHukZAtjKAcDrGQJYygHA6xkC6OYA4PUMAdzmAOD1DAFc5QDg9fQCWKMfgYcMwx+cZzIAp+MMAYJeoR8R1ugW0MwgvGmNboVuxLjbcIGfq3g9ZfgzsGmNHoQK4uaBAVAD2inC20DNGj1IPQ+MAZ0BR8BqTGkXuLBGnybxjRzJRsJxhmWgDlwDvZGSnturA2Vr9GncKJZKSUxzCZ5ppjz1DZFseyqx4vwdAAAAAElFTkSuQmCCiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8klEQVQ4jcXSsUoDQRSF4S/GVFppJQS0kO0ELaxF9CHcMo3F5nmc2m6E9FaKWFvY2GSxDyGYyk4ECzc42RiyjXhhirn3nH/mwuEvKsuLRj1Yr4vKGGAny4sTnFajBzxilGhAq27O8uICV9iqPTZFv4zhJoW0UkWWF2e4W7HheRnD/W8/2MQz9lcAXnFUxvAOa8mgi90VZpWmO7ukgA10GgA6lXYB8NHAvKBNAWNMGpgnlXYeUMYwxqABYFBpQTudvL083W4fHO/hcIn5uozhMm2kK8zC1EMfQ4yqM/Qdol490nNBqsHaftI4LWP4XL7Vf9YXTV1Hmeddx0wAAAAASUVORK5CYII=" rel="shortcut icon">
+        </head>
+<body>
+<div id="tc-content">
+    <div id="tc-frontmatters">
+                <div id="tc-title">talk notes</div>
+                        <table>
+                    <tr><td>version:</td><td>0.1</td></tr>
+                              <tr><td>date:</td><td>2019-05-14T18:37:28Z</td></tr>
+                              <tr><td>last change:</td><td>2019-05-14T14:13:12Z</td></tr>
+                              <tr><td>VCS:</td><td>1311d3e</td></tr>
+                                        <tr><td>author:</td><td>Dr. Sebastian Bogan</td></tr>
+                                        <tr><td>source:</td><td>talk-notes.md</td></tr>
+                  </table>
+    </div>
+        <div id="tc-toc">
+      <div id="tc-toc-title">
+        Contents:
+      </div>
+      <div id="tc-toc-body">
+        <ul>
+        <li><a href="#prep"><span class="toc-section-number">1</span> Prep</a></li>
+        <li><a href="#faas"><span class="toc-section-number">2</span> FaaS</a></li>
+        <li><a href="#v0"><span class="toc-section-number">3</span> V0</a></li>
+        <li><a href="#v1"><span class="toc-section-number">4</span> V1</a></li>
+        <li><a href="#v2"><span class="toc-section-number">5</span> V2</a></li>
+        <li><a href="#gcf-in-production"><span class="toc-section-number">6</span> GCF in Production</a></li>
+        <li><a href="#wrapup"><span class="toc-section-number">7</span> Wrapup</a></li>
+        </ul>
+      </div>
+    </div>
+        <h1 id="prep"><span class="header-section-number">1</span> Prep</h1>
+<ul>
+<li>open Slides (individual slides)</li>
+<li>open Notes (in Browser)</li>
+<li>start Slack (direkt message to me),</li>
+<li>start Goland (V0) (no open files, make clean, enable go modules),</li>
+<li>start Goland (V1) (no open files, make clean, enable go modules),</li>
+<li>start Goland (V2) (no open files, make clean, enable go modules),</li>
+<li>start <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a> (no functions visible),</li>
+<li>start <a href="https://api.slack.com/apps/AHYPGEEGY">Slack Apps</a> (no Commands or whatsoever)</li>
+<li>make sure slack commands and GCFs are removed as necessary</li>
+</ul>
+<h1 id="faas"><span class="header-section-number">2</span> FaaS</h1>
+<ol type="1">
+<li><p>Slides:</p>
+<ul>
+<li>FaaS 1</li>
+<li>FaaS 2</li>
+<li>FaaS here</li>
+</ul></li>
+</ol>
+<h1 id="v0"><span class="header-section-number">3</span> V0</h1>
+<ol type="1">
+<li><p>Slides:</p>
+<ul>
+<li>v0</li>
+</ul></li>
+<li><p>GoLand:</p>
+<ul>
+<li>Implementierung:
+<ul>
+<li>IDE von Jetbrains</li>
+<li><code>function.go</code>:
+<ul>
+<li>httpHandler <code>func(ResponseWriter, *Request)</code> from <code>net/http</code></li>
+</ul></li>
+<li><code>go.mod</code>:
+<ul>
+<li>go modules (no vendoring, outside of <code>~/go/src</code>)</li>
+<li>empty</li>
+</ul></li>
+<li><code>.gcloudignore</code>:
+<ul>
+<li>what not to upload</li>
+</ul></li>
+</ul></li>
+<li>Deployment:
+<ul>
+<li><code>Makefile</code>:
+<ul>
+<li><code>.cloud-sdk-setup</code>-target:
+<ul>
+<li>cleanup</li>
+<li>image pullen</li>
+<li>authenticate</li>
+<li>set project</li>
+</ul></li>
+<li><code>deploy</code>-target:
+<ul>
+<li>deploy the function</li>
+</ul></li>
+<li><code>test-prod</code>-target</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Browser: Google Cloud Platform:</p>
+<ul>
+<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
+<li>switch to functions</li>
+<li>show function source</li>
+<li>copy trigger URL</li>
+</ul></li>
+<li><p>Browser: Slack API</p>
+<ul>
+<li>open <a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a></li>
+<li>got to Slack-Commands</li>
+<li>create <code>hello</code>-command</li>
+<li>paste trigger URL</li>
+</ul></li>
+<li><p>Slack</p>
+<ul>
+<li><code>/hello</code></li>
+</ul></li>
+<li><p>Slides</p>
+<ul>
+<li>Wrapup
+<ul>
+<li>FaaS</li>
+<li>setting up the GCF-SDK</li>
+<li>implementation and deployment of a GCF</li>
+<li>connecting GCF to slack</li>
+</ul></li>
+</ul></li>
+</ol>
+<h1 id="v1"><span class="header-section-number">4</span> V1</h1>
+<ol type="1">
+<li><p>Slides:</p>
+<ul>
+<li>v1</li>
+</ul></li>
+<li><p>GoLand:</p>
+<ul>
+<li>Implementierung:
+<ul>
+<li><code>function.go</code>:
+<ul>
+<li>parse <code>application/x-www-form-urlencoded</code> data ([github.com/nlopes/slack])
+<ul>
+<li>show structure and shared secret</li>
+</ul></li>
+<li>validate [Verification tokens] a shared secret and (vs. [signing secrets])</li>
+<li>notify missing Slack Command argument</li>
+<li>logging</li>
+</ul></li>
+<li><code>go.mod</code>:
+<ul>
+<li>single dependency [github.com/nlopes/slack]</li>
+</ul></li>
+</ul></li>
+<li>Deployment:
+<ul>
+<li><code>Makefile</code>:
+<ul>
+<li><code>deploy</code>-target:
+<ul>
+<li>deploy the function</li>
+<li>set environment variable <code>SLACK_VERIFICATION_TOKEN</code></li>
+</ul></li>
+<li><code>test-prod</code>-target
+<ul>
+<li>show parameter in result</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Browser Google Cloud Platform:</p>
+<ul>
+<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
+<li>[switch to funktions]</li>
+<li>show function Source</li>
+<li>show environment variable</li>
+<li>show logging</li>
+</ul></li>
+<li><p>Browser: Slack API</p>
+<ul>
+<li>[<a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a>]</li>
+<li>[zu den Slack-Commands gehen]</li>
+<li>add <q>Usage Hint</q> to <code>hello</code> command</li>
+</ul></li>
+<li><p>Slack</p>
+<ul>
+<li><code>/hello test</code></li>
+</ul></li>
+<li><p>Slides</p>
+<ul>
+<li>Wrapup
+<ul>
+<li>extended Implementation v1 by a Parameter</li>
+<li>updated the GCF</li>
+</ul></li>
+</ul></li>
+</ol>
+<h1 id="v2"><span class="header-section-number">5</span> V2</h1>
+<ol type="1">
+<li><p>Slides:</p>
+<ul>
+<li>v2</li>
+</ul></li>
+<li><p>GoLand:</p>
+<ul>
+<li>Code Generation:
+<ul>
+<li><code>Makefile</code>:
+<ul>
+<li><code>statics/statik.go</code>-target:
+<ul>
+<li>pull YAML data from repo</li>
+<li>generate embedded statics</li>
+</ul></li>
+</ul></li>
+<li><code>assets/employee.yaml</code>:
+<ul>
+<li>the downloaded YAML data</li>
+</ul></li>
+<li><code>statics/statik.go</code>:
+<ul>
+<li>the embedded YAML data</li>
+</ul></li>
+</ul></li>
+<li>Implementierung:
+<ul>
+<li><code>internal/yamlData.go</code>:
+<ul>
+<li>parsing the YAML data</li>
+</ul></li>
+<li><code>internal/employees.go</code>:
+<ul>
+<li>nicer data structure</li>
+</ul></li>
+<li><code>function.go</code>:
+<ul>
+<li>parse employee data (based on the above)</li>
+<li>caching employee data (later more)</li>
+<li>fuzzy search ([github.com/sahilm/fuzzy])</li>
+<li>formatting</li>
+<li>respond with matching names and phone numbers</li>
+</ul></li>
+<li><code>/cmd/testwhoisgcf.go</code>
+<ul>
+<li>a poor man’s emulator</li>
+<li>go best practice layout</li>
+</ul></li>
+</ul></li>
+<li>Test:
+<ul>
+<li><code>test</code>-target
+<ul>
+<li>run tests on <code>internal</code>-package</li>
+</ul></li>
+<li><code>cmd/testwhoisgcf/testwhoisgcf</code>-target
+<ul>
+<li>build simple server</li>
+</ul></li>
+<li><code>run_local</code>-target
+<ul>
+<li>run simple server locally</li>
+</ul></li>
+<li><code>test_local</code>-target
+<ul>
+<li>run test against local server</li>
+<li>see output</li>
+<li>see logs</li>
+</ul></li>
+</ul></li>
+<li>Deployment:
+<ul>
+<li><code>.gcloudignore</code>:
+<ul>
+<li>include statics although excluded by <code>.gitignore</code></li>
+</ul></li>
+<li><code>Makefile</code>:
+<ul>
+<li><code>deploy</code>-target:
+<ul>
+<li>deploy the function</li>
+</ul></li>
+<li><code>test-prod</code>-target</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Browser: Google Cloud Platform:</p>
+<ul>
+<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
+<li>switch to functions</li>
+<li>show function source has been updated</li>
+<li>show caching effect in logs</li>
+</ul></li>
+<li><p>Browser: Slack API</p>
+<ul>
+<li>[<a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a>]</li>
+<li>[zu den Slack-Commands gehen]</li>
+<li>no need to change anything</li>
+</ul></li>
+<li><p>Slack</p>
+<ul>
+<li><code>/hello foo</code>
+<ul>
+<li>no result</li>
+</ul></li>
+<li><code>/hello sebo</code>
+<ul>
+<li>two results</li>
+</ul></li>
+</ul></li>
+<li><p>Slides</p>
+<ul>
+<li>Wrapup
+<ul>
+<li>complete command</li>
+</ul></li>
+</ul></li>
+</ol>
+<h1 id="gcf-in-production"><span class="header-section-number">6</span> GCF in Production</h1>
+<ol type="1">
+<li>Slides</li>
+</ol>
+<ul>
+<li>Scaling</li>
+<li>Pricing</li>
+<li>Price Example</li>
+</ul>
+<h1 id="wrapup"><span class="header-section-number">7</span> Wrapup</h1>
+<ol type="1">
+<li>Slides</li>
+</ol>
+<ul>
+<li>Things to do</li>
+<li>The next big thing?</li>
+<li>Readings</li>
+</ul>
+</div>
+<!--<script src="/home/sebastian/.panache/static//panache.js"></script>-->
+</body>
+</html>
