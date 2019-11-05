@@ -12,8 +12,9 @@ title: Correct Zipcodes using Serverless Golang
 Share our passion about Go based Microservices:
 
 - implementing a REST service
-- ... in go
+- ... in go (& goland)
 - ... using a Google Cloud Function
+- ... with nethttp
 
 # Show me what you've got
 
@@ -47,14 +48,14 @@ to get:
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  Wrapup
 
 # TOC
 
 1.  **FaaS**
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  Wrapup
 
@@ -92,11 +93,12 @@ to get:
 `v1` extends `v0` by zipchecker business logic:
 
 -   implementation
-    -    request processing
-    -    marshaling and unmarshaling
+    -    request processing (nethttp)
+    -    marshaling and unmarshaling (json and csv)
     -    embedding statics
     -    constructors
     -    Levenshtein distance
+    -    error handling
 -   testing
 
 # V2 GCP Deployment
@@ -111,7 +113,7 @@ to get:
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  **GCF in Production**
 4.  Wrapup
 
@@ -158,7 +160,7 @@ $\min(10, 32, 5.2, 2)\rightarrow 2*10^6$ free invocations $\equiv\ \sim\$4.88$
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  **Wrapup**
 
