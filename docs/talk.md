@@ -44,6 +44,15 @@ to get:
 -   Support EPLASS address detection (CoP ML project).
 -   Let’s play go.
 
+# Why go?
+
+-   Typed Language
+-   Minimal & Lightweight
+-   No external http server required
+-   Comprehensive concurrency & async
+-   Easily cross-compiled
+-   gofmt formatting
+
 # TOC
 
 1.  FaaS
