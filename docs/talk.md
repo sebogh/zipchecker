@@ -195,4 +195,4 @@ however:
   [Egress]: https://www.webopedia.com/TERM/E/egress_traffic.html
   [Cloud Functions Pricing]: https://cloud.google.com/functions/pricing
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
-  [this talk, the code …]: https://github.com/sebogh/zipchecker
+  [this talk, the code, etc.]: https://github.com/sebogh/zipchecker
