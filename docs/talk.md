@@ -178,11 +178,14 @@ however:
 -   “overly distributed”
 -   difficult to test
 -   high delay for logs (sometimes 5-10s)
+-   cost: hard to predict and might get out of hand
 
 # Wrapup – Readings
 
 -   [Google Cloud Functions Tutorial Series]
 -   [this talk, the code, etc.]
+-   [Service Setup with Gin, Auth0]
+-   [Service Monitoring with Go and DataDog]
 
 # <!-- -->
 
@@ -196,3 +199,5 @@ however:
   [Cloud Functions Pricing]: https://cloud.google.com/functions/pricing
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
   [this talk, the code …]: https://github.com/sebogh/zipchecker
+  [Service Setup with Gin, Auth0]: https://git.thinkproject.com/projects/BIM/repos/bim-image-service/browse
+  [Service Monitoring with Go and DataDog]: https://git.thinkproject.com/projects/BIM/repos/preprocessing_filestore/browse/datadog.go
