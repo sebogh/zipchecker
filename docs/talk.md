@@ -1,9 +1,9 @@
 ---
 author: Max and Sebastian
-date: 'some day in November 2019'
+date: 'Nov 08 2019'
 styles:
   html: tphtmlde
-  pdf: tpslides
+  pdf: tpslidesnew
 title: Correct Zipcodes using Serverless Golang
 ---
 
@@ -19,21 +19,24 @@ Share our passion about Go based Microservices:
 
 use for example:
 
-        curl -X POST ... -d '{"zipCode":"72205", "placeName":"Barlin"}'
+~~~~ {.bash}
+curl -X POST ... -d '{"zipCode":"72205", "placeName":"Barlin"}'
+~~~~
 
 to get:
 
-        "distance":2,
-        "percentage":81,
-        "place":{
-          "countryCode":"DE",
-          "zipCode":"12205",
-          "place":"Berlin",
-          ...
-          "latitude":"52.434",
-          "longitude":"13.2945"
-        }
-
+~~~~ {.json}
+"distance":2,
+"percentage":81,
+"place":{
+  "countryCode":"DE",
+  "zipCode":"12205",
+  "place":"Berlin",
+  ...
+  "latitude":"52.434",
+  "longitude":"13.2945"
+}
+~~~~
 
 # What’s the point?
 
@@ -179,15 +182,11 @@ however:
 # Wrapup – Readings
 
 -   [Google Cloud Functions Tutorial Series]
--   [Creating Slack Slash Commands using Go]
--   [this talk, the code …]
+-   [this talk, the code, etc.]
 
 # <!-- -->
 
 \center{end\vspace*{2cm}}
-
-                              /whois cool
-                              /whois smart
 
   [\*aaS Stacks]: https://serverless.zone/abstracting-the-back-end-with-faas-e5e80e837362
   [1]: img/IaaS-FaaS4.png {width="75%"}
@@ -196,5 +195,4 @@ however:
   [Egress]: https://www.webopedia.com/TERM/E/egress_traffic.html
   [Cloud Functions Pricing]: https://cloud.google.com/functions/pricing
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
-  [Creating Slack Slash Commands using Go]: https://medium.com/@emilygoldfein/creating-slack-slash-commands-using-go-3cea3b3f0920
-  [this talk, the code …]: https://git.thinkproject.com/users/sebastian.bogan/repos/whoisgcf
+  [this talk, the code …]: https://github.com/sebogh/zipchecker
