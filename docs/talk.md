@@ -47,9 +47,9 @@ to get:
 # Why go?
 
 -   Typed Language
--   Minimal & Lightweight
+-   Minimal and Lightweight
 -   No external http server required
--   Comprehensive concurrency & async
+-   Comprehensive concurrency and async
 -   Easily cross-compiled
 -   gofmt formatting
 
@@ -101,8 +101,8 @@ to get:
 `v1` extends `v0` by zipchecker business logic:
 
 -   implementation
-    -    request processing (net/http)
-    -    marshaling and unmarshaling (json and csv)
+    -    request processing (`net/http`)
+    -    marshaling and unmarshaling (JSON and CSV)
     -    embedding statics
     -    constructors
     -    Levenshtein distance
@@ -194,13 +194,13 @@ however:
 
 -   [Go Playground]
 -   [Google Cloud Functions Tutorial Series]
--   [this talk, the code, etc.]
 -   [Service Setup with Gin, Auth0]
 -   [Service Monitoring with Go and DataDog]
+-   [this talk]
 
 # <!-- -->
 
-\center{end\vspace*{2cm}}
+\center{\includegraphics[height=3cm]{img/max.png}\includegraphics[height=3cm]{img/sebastian.png}}
 
   [\*aaS Stacks]: https://serverless.zone/abstracting-the-back-end-with-faas-e5e80e837362
   [1]: img/IaaS-FaaS4.png {width="75%"}
@@ -210,6 +210,6 @@ however:
   [Cloud Functions Pricing]: https://cloud.google.com/functions/pricing
   [Go Playground]: https://play.golang.org
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
-  [this talk, the code, etc.]: https://github.com/sebogh/zipchecker
+  [this talk]: https://github.com/sebogh/zipchecker
   [Service Setup with Gin, Auth0]: https://git.thinkproject.com/projects/BIM/repos/bim-image-service/browse
   [Service Monitoring with Go and DataDog]: https://git.thinkproject.com/projects/BIM/repos/preprocessing_filestore/browse/datadog.go
