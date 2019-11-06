@@ -12,8 +12,8 @@ title: Correct Zipcodes using Serverless Golang
 Share our passion about Go based Microservices:
 
 - implementing a REST service
-- ... in go
-- ... using a Google Cloud Function
+- ... in go using goland
+- ... deploying it as a Google Cloud Function
 
 # Show me what you've got
 
@@ -41,20 +41,29 @@ to get:
 # What’s the point?
 
 -   What’s the fuss about FaaS?
--   Support EPLASS address detection.
+-   Support EPLASS address detection (CoP ML project).
 -   Let’s play go.
+
+# Why go?
+
+-   Typed Language
+-   Minimal & Lightweight
+-   No external http server required
+-   Comprehensive concurrency & async
+-   Easily cross-compiled
+-   gofmt formatting
 
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  Wrapup
 
 # TOC
 
 1.  **FaaS**
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  Wrapup
 
@@ -92,11 +101,12 @@ to get:
 `v1` extends `v0` by zipchecker business logic:
 
 -   implementation
-    -    request processing
-    -    marshaling and unmarshaling
+    -    request processing (net/http)
+    -    marshaling and unmarshaling (json and csv)
     -    embedding statics
     -    constructors
     -    Levenshtein distance
+    -    error handling
 -   testing
 
 # V2 GCP Deployment
@@ -111,7 +121,7 @@ to get:
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  **GCF in Production**
 4.  Wrapup
 
@@ -119,7 +129,7 @@ to get:
 
 -   scales by creating new function instances
 -   the total number of function instances can be limited
--   function instances are reused
+-   function instances are reused (watch out here)
 -   global scope may be used to cache across function invocations
 -   concurrent requests are processed by different instances
 -   response-time depends on hot- or cold start 
@@ -158,7 +168,7 @@ $\min(10, 32, 5.2, 2)\rightarrow 2*10^6$ free invocations $\equiv\ \sim\$4.88$
 # TOC
 
 1.  FaaS
-2.  V0, V1 and V2 of a slack command
+2.  V0, V1 and V2 of the zipchecker
 3.  GCF in Production
 4.  **Wrapup**
 
@@ -182,6 +192,7 @@ however:
 
 # Wrapup – Readings
 
+-   [Go Playground]
 -   [Google Cloud Functions Tutorial Series]
 -   [this talk, the code, etc.]
 -   [Service Setup with Gin, Auth0]
@@ -197,6 +208,7 @@ however:
   [2]: img/IaaS-FaaS3.png {width="90%"}
   [Egress]: https://www.webopedia.com/TERM/E/egress_traffic.html
   [Cloud Functions Pricing]: https://cloud.google.com/functions/pricing
+  [Go Playground]: https://play.golang.org
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
   [this talk, the code, etc.]: https://github.com/sebogh/zipchecker
   [Service Setup with Gin, Auth0]: https://git.thinkproject.com/projects/BIM/repos/bim-image-service/browse
