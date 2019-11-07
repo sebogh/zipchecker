@@ -91,7 +91,7 @@ test_gcloud:
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 	curl -X POST -s "https://$(GCF_REGION)-$(GCF_PROJECT).cloudfunctions.net/zipchecker" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
-		-d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
+		-d '{"zipCode":"72205", "placeName":"Barl"}' | jq
 
 # Remove object files (if any).
 clean:
