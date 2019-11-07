@@ -15,21 +15,11 @@ version: '0.1'
 
 -   open Slides (individual slides)
 -   open Notes (in Browser)
--   start Slack (direkt message to me),
 -   start Goland (V0) (no open files, make clean, enable go modules),
 -   start Goland (V1) (no open files, make clean, enable go modules),
 -   start Goland (V2) (no open files, make clean, enable go modules),
 -   start [Google Cloud Platform] (no functions visible),
--   start [Slack Apps] (no Commands or whatsoever)
 -   make sure slack commands and GCFs are removed as necessary
-
-# FaaS
-
-1.  Slides:
-
-    -   FaaS 1
-    -   FaaS 2
-    -   FaaS here
 
 # V0
 
@@ -43,28 +33,20 @@ version: '0.1'
         -   IDE von Jetbrains
         -   `function.go`:
             -   httpHandler `func(ResponseWriter, *Request)` from `net/http`
+            -   responde "Hello World"
+        -   `cmd/server/main.go`:
+            -   Router
         -   `go.mod`:
             -   go modules (no vendoring, outside of `~/go/src`)
             -   empty
-        -   `.gcloudignore`:
-            - what not to upload
-    -   Deployment:
+    -   Build / Run / Test:
         -   `Makefile`:
-            -   `.cloud-sdk-setup`-target:
-                -   cleanup
-                -   image pullen
-                -   authenticate
-                -   set project
-            -   `deploy`-target:
-                -   deploy the function
-            -   `test-prod`-target
+            -   `cmd/server/server`-target:
+                -   build the project
+            -   `run_local`-target:
+                -   run our server locally
+            -   `test-local`-target
             
-3.  Browser: Google Cloud Platform:
-
-    -   open [Google Cloud Platform]
-    -   switch to functions 
-    -   show function source
-    -   copy trigger URL
 
 4.  Browser: Slack API
 
@@ -111,31 +93,10 @@ version: '0.1'
             -   `test-prod`-target
                 -   show parameter in result
             
-3.  Browser Google Cloud Platform:
-
-    -   open [Google Cloud Platform]
-    -   \[switch to funktions\]
-    -   show function Source
-    -   show environment variable
-    -   show logging    
-
-
-4.  Browser: Slack API
-
-    -   \[[Slack API][Slack Apps]\]
-    -   \[zu den Slack-Commands gehen\]
-    -   add "Usage Hint" to `hello` command
-
-5.  Slack
-
-    -   `/hello test`
-
-6.  Slides
+3.  Slides
 
     -   Wrapup
-        -   extended Implementation v1 by a Parameter
-        -   updated the GCF
-
+        -   very simple "REST"-App
 # V2
 
 1.  Slides:
@@ -147,15 +108,12 @@ version: '0.1'
     -   Code Generation:
         -   `Makefile`:
             -   `statics/statik.go`-target:
-                -   pull YAML data from repo 
+                -   pull CSV data from repo 
                 -   generate embedded statics
-        -   `assets/employee.yaml`:
-            -   the downloaded YAML data
-        -   `statics/statik.go`:
-            -   the embedded YAML data
     -   Implementierung:
-        -   `internal/yamlData.go`:
-            -   parsing the YAML data 
+        -   `internal/places.go`:
+            -   type `Place`
+            -   
         -   `internal/employees.go`:
             -   nicer data structure 
         -   `function.go`:
@@ -186,6 +144,14 @@ version: '0.1'
                 -   deploy the function
             -   `test-prod`-target
             
+
+3.  Browser: Google Cloud Platform:
+
+    -   open [Google Cloud Platform]
+    -   switch to functions 
+    -   show function source
+    -   copy trigger URL
+
 3.  Browser: Google Cloud Platform:
 
     -   open [Google Cloud Platform]
