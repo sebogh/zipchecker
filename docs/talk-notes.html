@@ -65,7 +65,8 @@ padding: 0; }
 blockquote {
 padding: 1em 2em;
 margin-left: 0;
-margin-right: 0; }
+margin-right: 0;
+font-style: italic; }
 blockquote p:last-child {
 margin-bottom: 0; }
 ul {
@@ -322,9 +323,9 @@ margin-right: .5em; }
                 <div id="tc-title">talk notes</div>
                         <table>
                     <tr><td>version:</td><td>0.1</td></tr>
-                              <tr><td>date:</td><td>2019-05-14T18:37:28Z</td></tr>
-                              <tr><td>last change:</td><td>2019-05-14T14:13:12Z</td></tr>
-                              <tr><td>VCS:</td><td>1311d3e</td></tr>
+                              <tr><td>date:</td><td>2019-11-07T20:24:19Z</td></tr>
+                              <tr><td>last change:</td><td>2019-11-07T17:39:56Z</td></tr>
+                              <tr><td>VCS:</td><td>fbd820a</td></tr>
                                         <tr><td>author:</td><td>Dr. Sebastian Bogan</td></tr>
                                         <tr><td>source:</td><td>talk-notes.md</td></tr>
                   </table>
@@ -336,12 +337,9 @@ margin-right: .5em; }
       <div id="tc-toc-body">
         <ul>
         <li><a href="#prep"><span class="toc-section-number">1</span> Prep</a></li>
-        <li><a href="#faas"><span class="toc-section-number">2</span> FaaS</a></li>
-        <li><a href="#v0"><span class="toc-section-number">3</span> V0</a></li>
-        <li><a href="#v1"><span class="toc-section-number">4</span> V1</a></li>
-        <li><a href="#v2"><span class="toc-section-number">5</span> V2</a></li>
-        <li><a href="#gcf-in-production"><span class="toc-section-number">6</span> GCF in Production</a></li>
-        <li><a href="#wrapup"><span class="toc-section-number">7</span> Wrapup</a></li>
+        <li><a href="#v0"><span class="toc-section-number">2</span> V0</a></li>
+        <li><a href="#v1"><span class="toc-section-number">3</span> V1</a></li>
+        <li><a href="#v2"><span class="toc-section-number">4</span> V2</a></li>
         </ul>
       </div>
     </div>
@@ -349,24 +347,12 @@ margin-right: .5em; }
 <ul>
 <li>open Slides (individual slides)</li>
 <li>open Notes (in Browser)</li>
-<li>start Slack (direkt message to me),</li>
-<li>start Goland (V0) (no open files, make clean, enable go modules),</li>
-<li>start Goland (V1) (no open files, make clean, enable go modules),</li>
-<li>start Goland (V2) (no open files, make clean, enable go modules),</li>
+<li>start Goland (V0)</li>
+<li>start Goland (V1)</li>
+<li>start Goland (V2)</li>
 <li>start <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a> (no functions visible),</li>
-<li>start <a href="https://api.slack.com/apps/AHYPGEEGY">Slack Apps</a> (no Commands or whatsoever)</li>
-<li>make sure slack commands and GCFs are removed as necessary</li>
 </ul>
-<h1 id="faas"><span class="header-section-number">2</span> FaaS</h1>
-<ol type="1">
-<li><p>Slides:</p>
-<ul>
-<li>FaaS 1</li>
-<li>FaaS 2</li>
-<li>FaaS here</li>
-</ul></li>
-</ol>
-<h1 id="v0"><span class="header-section-number">3</span> V0</h1>
+<h1 id="v0"><span class="header-section-number">2</span> V0</h1>
 <ol type="1">
 <li><p>Slides:</p>
 <ul>
@@ -380,66 +366,46 @@ margin-right: .5em; }
 <li><code>function.go</code>:
 <ul>
 <li>httpHandler <code>func(ResponseWriter, *Request)</code> from <code>net/http</code></li>
+<li>responde <q>Hello World</q></li>
+</ul></li>
+<li><code>cmd/server/main.go</code>:
+<ul>
+<li>Router</li>
 </ul></li>
 <li><code>go.mod</code>:
 <ul>
 <li>go modules (no vendoring, outside of <code>~/go/src</code>)</li>
 <li>empty</li>
 </ul></li>
-<li><code>.gcloudignore</code>:
-<ul>
-<li>what not to upload</li>
 </ul></li>
-</ul></li>
-<li>Deployment:
+<li>Build / Run / Test:
 <ul>
 <li><code>Makefile</code>:
 <ul>
-<li><code>.cloud-sdk-setup</code>-target:
+<li><code>cmd/server/server</code>:
 <ul>
-<li>cleanup</li>
-<li>image pullen</li>
-<li>authenticate</li>
-<li>set project</li>
+<li>build the project</li>
 </ul></li>
-<li><code>deploy</code>-target:
+<li><code>run_local</code>:
 <ul>
-<li>deploy the function</li>
+<li>run our server</li>
 </ul></li>
-<li><code>test-prod</code>-target</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>Browser: Google Cloud Platform:</p>
+<li><code>test-local</code>
 <ul>
-<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
-<li>switch to functions</li>
-<li>show function source</li>
-<li>copy trigger URL</li>
+<li>test our server</li>
 </ul></li>
-<li><p>Browser: Slack API</p>
-<ul>
-<li>open <a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a></li>
-<li>got to Slack-Commands</li>
-<li>create <code>hello</code>-command</li>
-<li>paste trigger URL</li>
 </ul></li>
-<li><p>Slack</p>
-<ul>
-<li><code>/hello</code></li>
+</ul></li>
 </ul></li>
 <li><p>Slides</p>
 <ul>
 <li>Wrapup
 <ul>
-<li>FaaS</li>
-<li>setting up the GCF-SDK</li>
-<li>implementation and deployment of a GCF</li>
-<li>connecting GCF to slack</li>
+<li>very simple <q>REST</q>-App</li>
 </ul></li>
 </ul></li>
 </ol>
-<h1 id="v1"><span class="header-section-number">4</span> V1</h1>
+<h1 id="v1"><span class="header-section-number">3</span> V1</h1>
 <ol type="1">
 <li><p>Slides:</p>
 <ul>
@@ -447,67 +413,89 @@ margin-right: .5em; }
 </ul></li>
 <li><p>GoLand:</p>
 <ul>
-<li>Implementierung:
-<ul>
-<li><code>function.go</code>:
-<ul>
-<li>parse <code>application/x-www-form-urlencoded</code> data ([github.com/nlopes/slack])
-<ul>
-<li>show structure and shared secret</li>
-</ul></li>
-<li>validate [Verification tokens] a shared secret and (vs. [signing secrets])</li>
-<li>notify missing Slack Command argument</li>
-<li>logging</li>
-</ul></li>
-<li><code>go.mod</code>:
-<ul>
-<li>single dependency [github.com/nlopes/slack]</li>
-</ul></li>
-</ul></li>
-<li>Deployment:
+<li>Code Generation:
 <ul>
 <li><code>Makefile</code>:
 <ul>
-<li><code>deploy</code>-target:
+<li><code>assets/zipcodes.de.csv</code>
 <ul>
-<li>deploy the function</li>
-<li>set environment variable <code>SLACK_VERIFICATION_TOKEN</code></li>
+<li>the data</li>
 </ul></li>
-<li><code>test-prod</code>-target
+</ul></li>
+</ul></li>
+<li>Implementierung:
 <ul>
-<li>show parameter in result</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>Browser Google Cloud Platform:</p>
+<li><code>internal/places.go</code>:
 <ul>
-<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
-<li>[switch to funktions]</li>
-<li>show function Source</li>
-<li>show environment variable</li>
-<li>show logging</li>
-</ul></li>
-<li><p>Browser: Slack API</p>
+<li>type <code>Place</code></li>
+<li>type <code>Places</code></li>
+<li>constructor <code>NewPlaces()</code>
 <ul>
-<li>[<a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a>]</li>
-<li>[zu den Slack-Commands gehen]</li>
-<li>add <q>Usage Hint</q> to <code>hello</code> command</li>
+<li>opening file + <code>defer()</code> (like <code>finally</code> / <code>width</code>)</li>
+<li>error handling <code>err != nil</code></li>
 </ul></li>
-<li><p>Slack</p>
+<li>business logic <code>(places *Places) Check(...)</code>
 <ul>
-<li><code>/hello test</code></li>
+<li>methods on types</li>
+<li>iterate over zip codes and compute the Levenshtein distance (first lowest)</li>
+</ul></li>
+</ul></li>
+<li><code>internal/places_test.go</code>:
+<ul>
+<li>similar to Python unit tests</li>
+<li>no asserts etc.</li>
+<li>not shown but nice table based testing</li>
+</ul></li>
+<li><code>function.go</code>:
+<ul>
+<li>global variable <code>places</code></li>
+<li>pull query data from request</li>
+<li>compare query data against zipcode data (employ the business logic)</li>
+<li>marshall the result (recycle the data structure previously used for parsing the CSV file)</li>
+<li>return the match</li>
+</ul></li>
+</ul></li>
+<li>Build / Run / Test:
+<ul>
+<li><code>Makefile</code>:
+<ul>
+<li><code>assets/zipcodes.de.csv</code>:
+<ul>
+<li>pull CSV data from repo</li>
+</ul></li>
+<li><code>statics/statik.go</code>:
+<ul>
+<li>wrap the CSV data into a go file</li>
+</ul></li>
+<li><code>test</code>
+<ul>
+<li>run the <code>_test</code>s in the <code>internal</code>-package</li>
+</ul></li>
+<li><code>test-coverage</code>
+<ul>
+<li>visualize show coverage</li>
+</ul></li>
+<li><code>run_local</code>:
+<ul>
+<li>run our server</li>
+</ul></li>
+<li><code>test-local</code>
+<ol type="1">
+<li>all good (distance 0, match 100%)</li>
+<li>4 errors (distance 4, match 55%) still the right match</li>
+</ol></li>
+</ul></li>
+</ul></li>
 </ul></li>
 <li><p>Slides</p>
 <ul>
 <li>Wrapup
 <ul>
-<li>extended Implementation v1 by a Parameter</li>
-<li>updated the GCF</li>
+<li>fully working</li>
 </ul></li>
 </ul></li>
 </ol>
-<h1 id="v2"><span class="header-section-number">5</span> V2</h1>
+<h1 id="v2"><span class="header-section-number">4</span> V2</h1>
 <ol type="1">
 <li><p>Slides:</p>
 <ul>
@@ -515,137 +503,57 @@ margin-right: .5em; }
 </ul></li>
 <li><p>GoLand:</p>
 <ul>
-<li>Code Generation:
+<li>Deploy:
 <ul>
 <li><code>Makefile</code>:
 <ul>
-<li><code>statics/statik.go</code>-target:
+<li><code>.cloud-sdk-setup</code>:
 <ul>
-<li>pull YAML data from repo</li>
-<li>generate embedded statics</li>
+<li>pull the GCP SDK as a docker image</li>
+<li>run it and store credentials and project settings in the named container</li>
 </ul></li>
-</ul></li>
-<li><code>assets/employee.yaml</code>:
+<li><code>deploy_gcloud</code>:
 <ul>
-<li>the downloaded YAML data</li>
+<li>use (<q>recycle</q>) the prepared container to deploy to GCP</li>
 </ul></li>
-<li><code>statics/statik.go</code>:
+<li><code>test_gcloud</code>:
 <ul>
-<li>the embedded YAML data</li>
+<li>run the previously seen tests against the FaaS</li>
 </ul></li>
 </ul></li>
-<li>Implementierung:
+</ul></li>
+<li>GCP:
 <ul>
-<li><code>internal/yamlData.go</code>:
+<li>open <a href="https://console.cloud.google.com/functions/list?project=skilled-curve-238017&amp;authuser=2&amp;folder&amp;hl=de&amp;organizationId">GCP</a> - open <code>zipchecker-demo</code>
 <ul>
-<li>parsing the YAML data</li>
+<li>Allgemein:
+<ul>
+<li>RAM and Region</li>
 </ul></li>
-<li><code>internal/employees.go</code>:
+<li>Trigger:
 <ul>
-<li>nicer data structure</li>
+<li>URL</li>
 </ul></li>
-<li><code>function.go</code>:
+<li>Quelle:
 <ul>
-<li>parse employee data (based on the above)</li>
-<li>caching employee data (later more)</li>
-<li>fuzzy search ([github.com/sahilm/fuzzy])</li>
-<li>formatting</li>
-<li>respond with matching names and phone numbers</li>
+<li>known files</li>
 </ul></li>
-<li><code>/cmd/testwhoisgcf.go</code>
+<li><q>LOGS ansehen</q>:
 <ul>
-<li>a poor man’s emulator</li>
-<li>go best practice layout</li>
+<li>hot/cold start</li>
 </ul></li>
 </ul></li>
-<li>Test:
-<ul>
-<li><code>test</code>-target
-<ul>
-<li>run tests on <code>internal</code>-package</li>
-</ul></li>
-<li><code>cmd/testwhoisgcf/testwhoisgcf</code>-target
-<ul>
-<li>build simple server</li>
-</ul></li>
-<li><code>run_local</code>-target
-<ul>
-<li>run simple server locally</li>
-</ul></li>
-<li><code>test_local</code>-target
-<ul>
-<li>run test against local server</li>
-<li>see output</li>
-<li>see logs</li>
-</ul></li>
-</ul></li>
-<li>Deployment:
-<ul>
-<li><code>.gcloudignore</code>:
-<ul>
-<li>include statics although excluded by <code>.gitignore</code></li>
-</ul></li>
-<li><code>Makefile</code>:
-<ul>
-<li><code>deploy</code>-target:
-<ul>
-<li>deploy the function</li>
-</ul></li>
-<li><code>test-prod</code>-target</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>Browser: Google Cloud Platform:</p>
-<ul>
-<li>open <a href="https://console.cloud.google.com/home/dashboard?project=skilled-curve-238017">Google Cloud Platform</a></li>
-<li>switch to functions</li>
-<li>show function source has been updated</li>
-<li>show caching effect in logs</li>
-</ul></li>
-<li><p>Browser: Slack API</p>
-<ul>
-<li>[<a href="https://api.slack.com/apps/AHYPGEEGY">Slack API</a>]</li>
-<li>[zu den Slack-Commands gehen]</li>
-<li>no need to change anything</li>
-</ul></li>
-<li><p>Slack</p>
-<ul>
-<li><code>/hello foo</code>
-<ul>
-<li>no result</li>
-</ul></li>
-<li><code>/hello sebo</code>
-<ul>
-<li>two results</li>
 </ul></li>
 </ul></li>
 <li><p>Slides</p>
 <ul>
 <li>Wrapup
 <ul>
-<li>complete command</li>
+<li>FaaS</li>
 </ul></li>
 </ul></li>
 </ol>
-<h1 id="gcf-in-production"><span class="header-section-number">6</span> GCF in Production</h1>
-<ol type="1">
-<li>Slides</li>
-</ol>
-<ul>
-<li>Scaling</li>
-<li>Pricing</li>
-<li>Price Example</li>
-</ul>
-<h1 id="wrapup"><span class="header-section-number">7</span> Wrapup</h1>
-<ol type="1">
-<li>Slides</li>
-</ol>
-<ul>
-<li>Things to do</li>
-<li>The next big thing?</li>
-<li>Readings</li>
-</ul>
 </div>
-<!--<script src="/home/sebastian/.panache/static//panache.js"></script>-->
+<!--<script src="/home/sebastian.bogan/.panache/static//panache.js"></script>-->
 </body>
 </html>

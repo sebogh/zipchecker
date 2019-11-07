@@ -20,7 +20,7 @@ Share our passion about Go based Microservices:
 use for example:
 
 ~~~~ {.bash}
-curl -X POST ... -d '{"zipCode":"72205", "placeName":"Barlin"}'
+curl -X POST ... -d '{"zipCode":"72205", "placeName":"Barl"}'
 ~~~~
 
 to get:
@@ -196,11 +196,11 @@ however:
 -   [Google Cloud Functions Tutorial Series]
 -   [Service Setup with Gin, Auth0]
 -   [Service Monitoring with Go and DataDog]
--   [this talk]
+
 
 # <!-- -->
 
-\center{\includegraphics[height=3cm]{img/max.png}\includegraphics[height=3cm]{img/sebastian.png}}
+\center{\includegraphics[height=3cm]{img/max.png}\includegraphics[height=3cm]{img/sebastian.png}\\\url{https://github.com/sebogh/zipchecker}}
 
   [\*aaS Stacks]: https://serverless.zone/abstracting-the-back-end-with-faas-e5e80e837362
   [1]: img/IaaS-FaaS4.png {width="75%"}

@@ -15,11 +15,11 @@ version: '0.1'
 
 -   open Slides (individual slides)
 -   open Notes (in Browser)
--   start Goland (V0) (no open files, make clean, enable go modules),
--   start Goland (V1) (no open files, make clean, enable go modules),
--   start Goland (V2) (no open files, make clean, enable go modules),
+-   start Goland (V0) 
+-   start Goland (V1) 
+-   start Goland (V2) 
 -   start [Google Cloud Platform] (no functions visible),
--   make sure slack commands and GCFs are removed as necessary
+
 
 # V0
 
@@ -41,33 +41,17 @@ version: '0.1'
             -   empty
     -   Build / Run / Test:
         -   `Makefile`:
-            -   `cmd/server/server`-target:
+            -   `cmd/server/server`:
                 -   build the project
-            -   `run_local`-target:
-                -   run our server locally
-            -   `test-local`-target
-            
-
-4.  Browser: Slack API
-
-    -   open [Slack API][Slack Apps]
-    -   got to Slack-Commands
-    -   create `hello`-command
-    -   paste trigger URL
-
-5.  Slack
-
-    -   `/hello`
-
-
-6.  Slides
+            -   `run_local`:
+                -   run our server 
+            -   `test-local`
+                -   test our server
+3.  Slides
 
     -   Wrapup
-        -   FaaS
-        -   setting up the GCF-SDK 
-        -   implementation and deployment of a GCF 
-        -   connecting GCF to slack
-    
+        -   very simple "REST"-App
+
 # V1
 
 1.  Slides:
@@ -76,27 +60,50 @@ version: '0.1'
 
 2.  GoLand:
 
-    -   Implementierung:
-        -   `function.go`:
-            -   parse `application/x-www-form-urlencoded` data ([github.com/nlopes/slack])
-                - show structure and shared secret
-            -   validate [Verification tokens] a shared secret and (vs. [signing secrets])
-            -   notify missing Slack Command argument
-            -   logging
-        -   `go.mod`:
-            -   single dependency [github.com/nlopes/slack]
-    -   Deployment:
+    -   Code Generation:
         -   `Makefile`:
-            -   `deploy`-target:
-                -   deploy the function
-                -   set environment variable `SLACK_VERIFICATION_TOKEN`
-            -   `test-prod`-target
-                -   show parameter in result
-            
+            -   `assets/zipcodes.de.csv`
+                -   the data
+    -   Implementierung:
+        -   `internal/places.go`:
+            -   type `Place`
+            -   type `Places`
+            -   constructor `NewPlaces()`
+                -   opening file + `defer()` (like `finally` / `width`)
+                -   error handling `err != nil`
+            -   business logic `(places *Places) Check(...)`
+                -   methods on types
+                -   iterate over zip codes and compute the Levenshtein distance (first lowest)
+        -   `internal/places_test.go`:
+            -   similar to Python unit tests
+            -   no asserts etc.
+            -   not shown but nice table based testing
+        -   `function.go`:
+            -   global variable `places`
+            -   pull query data from request 
+            -   compare query data against zipcode data (employ the business logic)
+            -   marshall the result (recycle the data structure previously used for parsing the CSV file)
+            -   return the match
+    -   Build / Run / Test:
+        -   `Makefile`:
+            -   `assets/zipcodes.de.csv`:
+                -   pull CSV data from repo 
+            -   `statics/statik.go`:
+                -   wrap the CSV data into a go file
+            -   `test`
+                -   run the `_test`s in the `internal`-package
+            -   `test-coverage`
+                -   visualize show coverage
+            -   `run_local`:
+                -   run our server 
+            -   `test-local`
+                1.   all good (distance 0, match 100%)
+                2.   4 errors (distance 4, match 55%) still the right match
 3.  Slides
 
     -   Wrapup
-        -   very simple "REST"-App
+        -   fully working
+
 # V2
 
 1.  Slides:
@@ -105,94 +112,32 @@ version: '0.1'
 
 2.  GoLand:
 
-    -   Code Generation:
+    -   Deploy:
         -   `Makefile`:
-            -   `statics/statik.go`-target:
-                -   pull CSV data from repo 
-                -   generate embedded statics
-    -   Implementierung:
-        -   `internal/places.go`:
-            -   type `Place`
-            -   
-        -   `internal/employees.go`:
-            -   nicer data structure 
-        -   `function.go`:
-            -   parse employee data (based on the above)
-            -   caching employee data (later more)
-            -   fuzzy search ([github.com/sahilm/fuzzy])
-            -   formatting
-            -   respond with matching names and phone numbers
-        -   `/cmd/testwhoisgcf.go`
-            -   a poor man’s emulator
-            -   go best practice layout 
-    -   Test:
-        -   `test`-target
-            - run tests on `internal`-package
-        -   `cmd/testwhoisgcf/testwhoisgcf`-target
-            - build simple server
-        -   `run_local`-target
-            - run simple server locally
-        -   `test_local`-target
-            - run test against local server
-            - see output
-            - see logs 
-    -   Deployment:
-        -   `.gcloudignore`:
-            -   include statics although excluded by `.gitignore`
-        -   `Makefile`:
-            -   `deploy`-target:
-                -   deploy the function
-            -   `test-prod`-target
-            
+            -   `.cloud-sdk-setup`:
+                -   pull the GCP SDK as a docker image
+                -   run it and store credentials and project settings in the named container
+            -   `deploy_gcloud`:
+                -   use ("recycle") the prepared container to deploy to GCP
+            -   `test_gcloud`:
+                -   run the previously seen tests against the FaaS
+    -   GCP:
+        -    open [GCP](https://console.cloud.google.com/functions/list?project=skilled-curve-238017&authuser=2&folder&hl=de&organizationId)
+            -    open `zipchecker-demo`
+                -    Allgemein:
+                     -    RAM and Region
+                -    Trigger:
+                     -    URL
+                -    Quelle:
+                     -    known files
+                -    "LOGS ansehen":
+                     -    hot/cold start
+                
 
-3.  Browser: Google Cloud Platform:
-
-    -   open [Google Cloud Platform]
-    -   switch to functions 
-    -   show function source
-    -   copy trigger URL
-
-3.  Browser: Google Cloud Platform:
-
-    -   open [Google Cloud Platform]
-    -   switch to functions 
-    -   show function source has been updated
-    -   show caching effect in logs
-
-4.  Browser: Slack API
-
-    -   \[[Slack API][Slack Apps]\]
-    -   \[zu den Slack-Commands gehen\]
-    -   no need to change anything
-
-5.  Slack
-
-    -   `/hello foo`
-        -   no result
-    -   `/hello sebo`
-        -   two results
-
-6.  Slides
+3.  Slides
 
     -   Wrapup
-        -   complete command
-
-
-# GCF in Production
-
-1. Slides
-
--   Scaling
--   Pricing
--   Price Example
-
-# Wrapup
-
-1. Slides
-
--   Things to do 
--   The next big thing?
--   Readings
+        -   FaaS
 
 <!--
 # Local Variables:
