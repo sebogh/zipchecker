@@ -78,8 +78,7 @@ setup_gcloud: .cloud-sdk-setup
 deploy_gcloud: .cloud-sdk-setup statics/statik.go $(GO_FILES)
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
 		google/cloud-sdk gcloud functions deploy zipchecker-demo --trigger-http --region=$(GCF_REGION) \
-		--runtime go111 --entry-point Query --source="/code" --memory=128mb \
-		--set-env-vars BUILD_GITHASH=$(BUILD_GITHASH)
+		--runtime go111 --entry-point Query --source="/code" --memory=128mb
 	docker run --rm -ti --volumes-from gcloud-config --dns=8.8.8.8 --dns-search=. --volume=$(CWD):/code \
         google/cloud-sdk /bin/sh -c "cd /code && chown -Rc --reference=Makefile ."
 
