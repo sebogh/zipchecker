@@ -41,6 +41,8 @@ test-coverage: statics/statik.go
 # Build test server.
 cmd/server/server: statics/statik.go $(GO_FILES)
 	go build -o $@ $(MODULE)/cmd/server
+	du -h $@
+	file $@
 
 # Run test server.
 run_local: cmd/server/server
@@ -53,7 +55,7 @@ test_local:
 		-d '{"zipCode":"12205", "placeName":"Berlin"}' | jq
 	curl -X POST -s "http://localhost:8080" \
 		-H "accept: application/json" -H "Content-Type: application/json" \
-        -d '{"zipCode":"72205", "placeName":"Barlin"}' | jq
+        -d '{"zipCode":"72205", "placeName":"Barl"}' | jq
 
 # Remove object files (if any).
 clean:
