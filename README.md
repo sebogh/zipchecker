@@ -17,3 +17,8 @@ build and start a local server in one shell:
 and in a second shell query the server by running:
 
     make test_local
+
+# Data
+
+The data set is retrieved from 
+[github.com/zauberware/postal-codes-json-xml-csv](https://github.com/zauberware/postal-codes-json-xml-csv)
