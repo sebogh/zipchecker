@@ -13,7 +13,7 @@ PATH := $(GOPATH)/bin:$(PATH)
 CWD := $(shell pwd)
 
 # Collect .go files.
-GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go)
+GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go cmd/server/*.go)
 
 # The go module we dealing with
 MODULE := git.thinkproject.com/zipchecker
@@ -46,7 +46,7 @@ test-coverage: statics/statik.go
 	go tool cover -html=coverage.out
 
 # Build test server.
-cmd/server/server: statics/statik.go $(GO_FILES)
+cmd/server/server: statics/statik.go cmd/server/*.go internal/*.go function.go
 	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/server
 
 # Compile the gRPC stubs.
@@ -54,11 +54,11 @@ proto/zipchecker.pb.go: proto/zipchecker.proto
 	protoc --go_out=plugins=grpc:. --go_opt=paths=source_relative proto/zipchecker.proto
 
 # Build gRPC client.
-cmd/grpc-server/grpc-server: statics/statik.go proto/zipchecker.pb.go $(GO_FILES)
+cmd/grpc-server/grpc-server: statics/statik.go proto/zipchecker.pb.go cmd/grpc-server/main.go
 	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/grpc-server
 
 # Build gRPC client.
-cmd/grpc-client/grpc-client: statics/statik.go proto/zipchecker.pb.go $(GO_FILES)
+cmd/grpc-client/grpc-client: statics/statik.go proto/zipchecker.pb.go cmd/grpc-client/main.go
 	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/grpc-client
 
 

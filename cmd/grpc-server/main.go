@@ -22,26 +22,30 @@ package main
 import (
 	"context"
 	"fmt"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	"log"
 	"net"
 
 	pb "git.thinkproject.com/zipchecker/proto"
 	"google.golang.org/grpc"
+
 )
+
+var buildGithash = "to be set by linker"
 
 const (
 	port = ":50051"
 )
 
-// server is used to implement helloworld.GreeterServer.
+// server is used to implement zipchecker.ZipcheckerServer.
 type server struct {
-	pb.UnimplementedGreeterServer
+	pb.UnimplementedZipcheckerServer
 }
 
-// SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Printf("Received: %v", in.GetName())
-	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
+// Hash implements zipchecker.ZipcheckerServer
+func (s *server) GetHash(ctx context.Context, empty *empty.Empty) (*pb.HashReply, error) {
+	log.Print("received request")
+	return &pb.HashReply{Message: buildGithash}, nil
 }
 
 func main() {
@@ -51,7 +55,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &server{})
+	pb.RegisterZipcheckerServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
