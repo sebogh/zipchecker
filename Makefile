@@ -49,6 +49,19 @@ test-coverage: statics/statik.go
 cmd/server/server: statics/statik.go $(GO_FILES)
 	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/server
 
+# Compile the gRPC stubs.
+proto/zipchecker.pb.go: proto/zipchecker.proto
+	protoc --go_out=plugins=grpc:. --go_opt=paths=source_relative proto/zipchecker.proto
+
+# Build gRPC client.
+cmd/grpc-server/grpc-server: statics/statik.go proto/zipchecker.pb.go $(GO_FILES)
+	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/grpc-server
+
+# Build gRPC client.
+cmd/grpc-client/grpc-client: statics/statik.go proto/zipchecker.pb.go $(GO_FILES)
+	go build -o $@ -ldflags '-X main.buildGithash=$(BUILD_GITHASH)' $(MODULE)/cmd/grpc-client
+
+
 # Run test server.
 run_local: cmd/server/server
 	$<
