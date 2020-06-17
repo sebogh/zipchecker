@@ -13,7 +13,7 @@ PATH := $(GOPATH)/bin:$(PATH)
 CWD := $(shell pwd)
 
 # Collect .go files.
-GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go cmd/server/*.go)
+GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go)
 
 # The go module we dealing with
 MODULE := git.thinkproject.com/zipchecker
