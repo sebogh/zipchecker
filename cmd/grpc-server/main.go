@@ -22,6 +22,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"git.thinkproject.com/zipchecker/internal"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	"log"
 	"net"
@@ -43,12 +44,36 @@ type server struct {
 }
 
 // Hash implements zipchecker.ZipcheckerServer
-func (s *server) GetHash(ctx context.Context, empty *empty.Empty) (*pb.HashReply, error) {
+func (s *server) GetHash(ctx context.Context, _ *empty.Empty) (*pb.HashReply, error) {
 	log.Print("received request")
 	return &pb.HashReply{Message: buildGithash}, nil
 }
 
+func (s *server) CheckZip(ctx context.Context, in *pb.CheckZipRequest) (*pb.CheckZipResponse, error) {
+	log.Print("received zip request")
+	match := places.Check(in.ZipCode, in.PlaceName)
+	return &pb.CheckZipResponse{
+		CountryCode:          match.Place.CountryCode,
+		ZipCode:              match.Place.ZipCode,
+		Place:                match.Place.Place,
+		State:                match.Place.State,
+		StateCode:            match.Place.StateCode,
+		Province:             match.Place.Province,
+		ProvinceCode:         match.Place.ProvinceCode,
+		Community:            match.Place.Community,
+		CommunityCode:        match.Place.CommunityCode,
+		Latitude:             match.Place.Latitude,
+		Longitude:            match.Place.Longitude,
+		Distance:             int32(match.Distance),
+		Percentage:           int32(match.Percentage),
+	}, nil
+}
+
+var places *internal.Places
+
 func main() {
+	places = internal.NewPlaces()
+	log.Printf("initialized list of %d places.", len(*places))
 	lis, err := net.Listen("tcp", port)
 	fmt.Printf("going to listen on port %s", port)
 	if err != nil {

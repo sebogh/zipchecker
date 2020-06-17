@@ -11,10 +11,32 @@ service Zipchecker {
 
   // Get the git hash.
   rpc GetHash(google.protobuf.Empty) returns (HashReply) {}
+  rpc CheckZip(CheckZipRequest) returns (CheckZipResponse) {}
 
 }
 
 // The response message containing the hash.
 message HashReply {
   string message = 1;
+}
+
+message CheckZipRequest {
+  string ZipCode = 1;
+  string PlaceName = 2;
+}
+
+message CheckZipResponse {
+  string CountryCode = 1;
+  string ZipCode = 2;
+  string Place = 3;
+  string State = 4;
+  string StateCode = 5;
+  string Province = 6;
+  string ProvinceCode = 7;
+  string Community = 8;
+  string CommunityCode = 9;
+  string Latitude = 10;
+  string Longitude = 11;
+  int32 Distance = 12;
+  int32 Percentage = 13;
 }

@@ -33,4 +33,10 @@ func main() {
 		log.Fatalf("could not get hash: %v", err)
 	}
 	log.Printf("Hash: %s", r.GetMessage())
+
+	zip, errZip := c.CheckZip(ctx, &pb.CheckZipRequest{ZipCode: "12205", PlaceName: "Berlin"})
+	if errZip != nil {
+		log.Fatalf("could not get hash: %v", errZip)
+	}
+	log.Print(zip.String())
 }
