@@ -7,3 +7,6 @@
 /coverage.out
 *~
 /go.sum
+/cmd/grpc-client/grpc-client
+/cmd/grpc-server/grpc-server
+/proto/zipchecker.pb.go
