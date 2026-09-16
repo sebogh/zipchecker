@@ -38,7 +38,7 @@ func TestPlaceFormat(t *testing.T) {
 
 func TestPlacesLoaded(t *testing.T) {
 	count := len(*places)
-	expected := 16481
+	expected := 23297
 	if count != expected {
 		t.Errorf("Unexpected number of places, got: %d, want: %d.", count, expected)
 	}

@@ -2,7 +2,7 @@ package internal
 
 import (
 	"fmt"
-	_ "git.thinkproject.com/zipchecker/statics"
+	_ "sebogh/zipchecker/statics"
 	"github.com/agnivade/levenshtein"
 	"github.com/gocarina/gocsv"
 	"github.com/rakyll/statik/fs"

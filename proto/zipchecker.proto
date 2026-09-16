@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-option go_package = "git.thinkproject.com/zipchecker/proto";
+option go_package = "sebogh/zipchecker/proto";
 
 package zipchecker;
 

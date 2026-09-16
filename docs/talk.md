@@ -211,5 +211,5 @@ however:
   [Go Playground]: https://play.golang.org
   [Google Cloud Functions Tutorial Series]: https://rominirani.com/google-cloud-functions-tutorial-series-f04b2db739cd
   [this talk]: https://github.com/sebogh/zipchecker
-  [Service Setup with Gin, Auth0]: https://git.thinkproject.com/projects/BIM/repos/bim-image-service/browse
-  [Service Monitoring with Go and DataDog]: https://git.thinkproject.com/projects/BIM/repos/preprocessing_filestore/browse/datadog.go
+  [Service Setup with Gin, Auth0]: https://sebogh/projects/BIM/repos/bim-image-service/browse
+  [Service Monitoring with Go and DataDog]: https://sebogh/projects/BIM/repos/preprocessing_filestore/browse/datadog.go

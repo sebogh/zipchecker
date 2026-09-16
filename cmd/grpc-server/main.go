@@ -22,12 +22,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"git.thinkproject.com/zipchecker/internal"
+	"sebogh/zipchecker/internal"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	"log"
 	"net"
 
-	pb "git.thinkproject.com/zipchecker/proto"
+	pb "sebogh/zipchecker/proto"
 	"google.golang.org/grpc"
 
 )

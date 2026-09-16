@@ -3,7 +3,7 @@ package zipchecker
 import (
 	"encoding/json"
 	"fmt"
-	"git.thinkproject.com/zipchecker/internal"
+	"sebogh/zipchecker/internal"
 	"log"
 	"net/http"
 	"os"

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"git.thinkproject.com/zipchecker"
+	"sebogh/zipchecker"
 )
 
 var buildGithash = "to be set by linker"

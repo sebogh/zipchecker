@@ -16,7 +16,7 @@ CWD := $(shell pwd)
 GO_FILES := $(wildcard cmd/server/*.go internal/*.go function.go)
 
 # The go module we dealing with
-MODULE := git.thinkproject.com/zipchecker
+MODULE := sebogh/zipchecker
 
 # Google Cloud parameter.
 GCF_PROJECT := skilled-curve-238017
@@ -29,11 +29,13 @@ all: cmd/server/server
 
 assets/zipcodes.de.csv:
 	mkdir -p assets
-	wget -O $@ https://raw.githubusercontent.com/zauberware/postal-codes-json-xml-csv/master/data/DE/zipcodes.de.csv
+	wget -O assets/DE.zip https://github.com/zauberware/postal-codes-json-xml-csv/raw/refs/heads/master/data/DE.zip
+	cd assets && unzip DE.zip 
+#wget -O $@ https://raw.githubusercontent.com/zauberware/postal-codes-json-xml-csv/master/data/DE/zipcodes.de.csv
 
 # Convert the content of the assets folder to a go module providing a http.FileSystem.
 statics/statik.go: assets/zipcodes.de.csv
-	go get github.com/rakyll/statik
+	go install github.com/rakyll/statik
 	statik -f -src assets -p statics
 
 # Test internal package.

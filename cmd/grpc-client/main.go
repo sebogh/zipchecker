@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	pb "git.thinkproject.com/zipchecker/proto"
+	pb "sebogh/zipchecker/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
 )
